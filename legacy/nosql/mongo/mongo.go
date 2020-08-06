@@ -637,7 +637,7 @@ func (u *Update) Do(ctx context.Context) error {
 	updateOptions := options.Update()
 	if u.upsert != nil && len(u.upsert) != 0 {
 		updateOptions.SetUpsert(true)
-		u.update["$setOnInsert"] = u.upsert
+		u.update["$set"] = u.upsert
 	}
 	_, err := u.col.c.UpdateOne(ctx, idFilter, u.update, updateOptions)
 
